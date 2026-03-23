@@ -1,0 +1,26 @@
+host: 0.0.0.0
+port: 37501
+
+http_authenticator:
+  domain_controller: wsgidav.dc.simple_dc.SimpleDomainController
+  accept_basic: true
+  accept_digest: false
+  default_to_digest: false
+
+simple_dc:
+  user_mapping:
+    "/":
+      "obsidianUser":
+        password: "***mySecretPassword***"
+        roles: ["editor"]
+
+provider_mapping:
+  "/":
+    provider: wsgidav.fs_dav_provider.FilesystemProvider
+    root: /obsidian_vault
+    readonly: false
+
+verbose: 3
+logging:
+  enable: true
+  enable_loggers: []
